@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS Link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Styling the body */
+        body {
+            background-color: #2e2e2e;
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        /* Centering the content */
+        .login-content {
+            text-align: center;
+        }
+        /* Styling the logo image */
+        .login-content img {
+            width: 50px;
+            margin-bottom: 20px;
+        }
+        /* Styling the main heading */
+        .login-content h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        /* Customizing form controls */
+        .form-control {
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        /* Form control focus state */
+        .form-control:focus {
+            background-color: #555;
+        }
+        /* Styling the login button */
+        .btn-login {
+            background-color: #00d85b;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            color: white;
+        }
+        /* Login button hover state */
+        .btn-login:hover {
+            background-color: #00a74a;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-content">
+        <!-- Logo Image -->
+        <img src="{% static 'icons/logo.svg' %}" alt="Logo">
+        <!-- Application Name -->
+
+        <!-- Login Form -->
+        <form>
+            <!-- Email Input -->
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" required>
+            </div>
+            <!-- Password Input -->
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" required>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-login">Log In</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS Links -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
