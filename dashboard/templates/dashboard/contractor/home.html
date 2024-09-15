@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2e2e2e;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #ffcc00;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .content h1 {
+            color: #ffcc00;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .project-list {
+            margin: 0 auto;
+            width: 50%;
+            text-align: left;
+        }
+        .project-item {
+            background-color: #f0f0f0;
+            color: black;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .add-button {
+            font-size: 40px;
+            color: #ffcc00;
+            margin: 20px 0;
+        }
+        .add-button:hover {
+            cursor: pointer;
+        }
+        .logout-btn {
+            background-color: #ffcc00;
+            color: black;
+            border: none;
+            padding: 10px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+        .logout-btn:hover {
+            cursor: pointer;
+            background-color: #e6b800;
+        }
+        .project-info {
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        Projects
+    </div>
+
+    <div class="content">
+        <div class="project-list">
+            <div class="project-item">
+                <span>Pearson Lift</span>
+                <div class="project-info">
+                    <span>Notifications: 3</span>
+                    <span>State: Schedule Resubmission</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <span>Stage 1</span>
+                <div class="project-info">
+                    <span>Notifications: 2</span>
+                    <span>State: Pending</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <span>Phase 1</span>
+                <div class="project-info">
+                    <span>Notifications: 2</span>
+                    <span>State: Confirmed</span>
+                </div>
+            </div>
+        </div>
+        <div class="add-button">+</div>
+        <button class="logout-btn">Log Out</button>
+    </div>
+</body>
+</html>

@@ -20,6 +20,12 @@ class CustomUser(AbstractUser):
 
     objects = CustomUserManager()
 
+    def is_manager(self):
+        return bool(self.type == CustomUser.Types.MANAGER)
+
+    def is_contractor(self):
+        return bool(self.type == CustomUser.Types.CONTRACTOR)
+
     def __str__(self):
         return self.email
 
@@ -30,9 +36,10 @@ class Manager(CustomUser):
     class Meta:
         proxy = True
 
-    permissions = (
-        ('manager_view', 'manager access the view'),
-    )
+        permissions = (
+            ('is_manager', 'Can access the manager dashboard view'),
+        )
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.type = CustomUser.Types.MANAGER
@@ -45,9 +52,10 @@ class Contractor(CustomUser):
     class Meta:
         proxy = True
 
-    permissions = (
-        ('contractor_view', 'contractor access the view'),
-    )
+        permissions = (
+            ('is_contractor', 'Can access the contractor dashboard view'),
+        )
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.type = CustomUser.Types.CONTRACTOR

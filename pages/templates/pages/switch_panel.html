@@ -68,12 +68,12 @@
     <div class="column">
         <h2>⚛️ Tectotrack</h2>
         <p>⚛️ Disruptive Projects</p>
-        <a href="{% url 'login' %}?user_type=manager" class="btn">Login as Manager</a>
+        <a href="{% url 'login' 'manager' %}" class="btn">Login as Manager</a>
     </div>
     <div class="column">
         <h2>⚛️ Tectotrack</h2>
         <p>⚛️ User Experience</p>
-        <a href="{% url 'login' %}?user_type=contractor" class="btn">Login as Contractor</a>
+        <a href="{% url 'login'  'contractor' %}" class="btn">Login as Contractor</a>
     </div>
 </div>
 </body>

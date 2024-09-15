@@ -1,4 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
@@ -40,9 +41,9 @@ class CustomUserManager(BaseUserManager):
 
 class ManagerManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(type=settings.AUTH_USER_MODEL.Types.MANAGER)
+        return super().get_queryset(*args, **kwargs).filter(type=get_user_model().Types.MANAGER)
 
 
 class ContractorManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(type=settings.AUTH_USER_MODEL.Types.CONTRACTOR)
+        return super().get_queryset(*args, **kwargs).filter(type=get_user_model().Types.CONTRACTOR)

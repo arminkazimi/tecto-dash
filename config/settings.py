@@ -37,12 +37,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # My apps:
+    # My app:
     "core",
     "registration",
     "pages",
-    "manager_dashboard",
-    "contractor_dashboard",
+    "dashboard",
+
+    # Third party app:
+    "formtools",
 ]
 
 MIDDLEWARE = [
@@ -121,4 +123,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'core.CustomUser'
+LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/auth/logedin/'
