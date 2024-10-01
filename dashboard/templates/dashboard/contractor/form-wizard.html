@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form wizard</title>
+    {{ wizard.form.media }}
+</head>
+<body>
+<p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+<!-- my_template.html -->
+<!-- step_template.html -->
+<form method="post" enctype="multipart/form-data">  <!-- Include enctype for file uploads -->
+    {% csrf_token %}
+    {{ wizard.management_form }}
+    {{ form.as_p }}
+    <button type="submit">Next</button>
+</form>
+
+
+</body>
+</html>

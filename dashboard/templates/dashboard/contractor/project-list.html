@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
         }
+
         .header {
             background-color: #ffcc00;
             height: 60px;
@@ -23,20 +24,24 @@
             font-size: 24px;
             font-weight: bold;
         }
+
         .content {
             padding: 20px;
             text-align: center;
         }
+
         .content h1 {
             color: #ffcc00;
             text-align: left;
             margin-bottom: 30px;
         }
+
         .project-list {
             margin: 0 auto;
             width: 50%;
             text-align: left;
         }
+
         .project-item {
             background-color: #f0f0f0;
             color: black;
@@ -46,14 +51,17 @@
             display: flex;
             justify-content: space-between;
         }
+
         .add-button {
             font-size: 40px;
             color: #ffcc00;
             margin: 20px 0;
         }
+
         .add-button:hover {
             cursor: pointer;
         }
+
         .logout-btn {
             background-color: #ffcc00;
             color: black;
@@ -63,10 +71,12 @@
             font-weight: bold;
             border-radius: 8px;
         }
+
         .logout-btn:hover {
             cursor: pointer;
             background-color: #e6b800;
         }
+
         .project-info {
             display: flex;
             justify-content: space-between;
@@ -75,36 +85,36 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        Projects
-    </div>
+<div class="header">
+    Projects
+</div>
 
-    <div class="content">
-        <div class="project-list">
-            <div class="project-item">
-                <span>Pearson Lift</span>
-                <div class="project-info">
-                    <span>Notifications: 3</span>
-                    <span>State: Schedule Resubmission</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <span>Stage 1</span>
-                <div class="project-info">
-                    <span>Notifications: 2</span>
-                    <span>State: Pending</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <span>Phase 1</span>
-                <div class="project-info">
-                    <span>Notifications: 2</span>
-                    <span>State: Confirmed</span>
-                </div>
+<div class="content">
+    <div class="project-list">
+        <div class="project-item">
+            <span>Pearson Lift</span>
+            <div class="project-info">
+                <span>Notifications: 3</span>
+                <span>State: Schedule Resubmission</span>
             </div>
         </div>
-        <div class="add-button">+</div>
-        <button class="logout-btn">Log Out</button>
+        <div class="project-item">
+            <span>Stage 1</span>
+            <div class="project-info">
+                <span>Notifications: 2</span>
+                <span>State: Pending</span>
+            </div>
+        </div>
+        <div class="project-item">
+            <span>Phase 1</span>
+            <div class="project-info">
+                <span>Notifications: 2</span>
+                <span>State: Confirmed</span>
+            </div>
+        </div>
     </div>
+    <div ><a class="add-button" href="{% url 'create-project' %}">+</a></div>
+    <button class="logout-btn">Log Out</button>
+</div>
 </body>
 </html>
