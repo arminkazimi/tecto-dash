@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Status</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header style */
+        .header {
+            background-color: #f7b500;
+            height: 50px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+        }
+
+        .header a {
+            color: #f7b500;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Container margin adjustment for the fixed header */
+        .container {
+            margin-top: 80px; /* Adjust for the header */
+        }
+
+        /* Title with yellow color */
+        h3 {
+            color: #f7b500;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Project Schedule Title */
+        .schedule-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: white;
+            border-bottom: 2px solid #f7b500;
+            padding-bottom: 5px;
+        }
+
+        /* Paragraph text */
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Date */
+        .date {
+            color: #f7b500;
+            font-weight: bold;
+            float: right;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <a href="{% url 'back_page' %}">Back</a>
+    </div>
+
+    <!-- Main content container -->
+    <div class="container">
+        <!-- Title with yellow color -->
+        <h3>Project Status</h3>
+
+        <!-- Project Schedule Title and Date -->
+        <div class="schedule-title">
+            Project Schedule Resubmission!
+            <span class="date">10/05/2024</span>
+        </div>
+
+        <!-- Main paragraph content -->
+        <p>
+            Dear Contractor,<br><br>
+            We have conducted a thorough review of the project submissions you have provided, and we must bring to your attention that there are discrepancies in the date and time schedules that do not align with our main criteria. It is imperative that all entries strictly adhere to the established guidelines to ensure a seamless and coordinated workflow. We kindly request that you revisit the project documentation and rectify these inconsistencies at your earliest convenience.<br><br>
+            Please consider this message as an urgent alert to review and update the submitted schedules. The accuracy of this information is critical to the project's success and to maintaining the integrity of our timeline. We appreciate your prompt attention to this matter and look forward to receiving the revised documents. Should you require clarification on the criteria or need assistance, do not hesitate to reach out.
+        </p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,8 +1,10 @@
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.views import redirect_to_login
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView, DetailView
 
 from dashboard.forms import (
     ProjectForm,
@@ -11,10 +13,20 @@ from dashboard.forms import (
 from dashboard.models import Project
 
 
-class CreateProjectView(CreateView):
+class CreateProjectView(UserPassesTestMixin, CreateView):
     template_name = 'dashboard/contractor/project-create.html'
     model = Project
     form_class = ProjectForm  # the parent object's form
+
+    def test_func(self):
+        return self.request.user.is_contractor()
+
+    def handle_no_permission(self):
+        return redirect_to_login(
+            self.request.get_full_path(),
+            reverse('login', kwargs={'user_type': 'contractor'}),
+            'next'
+        )
 
     # On successful form submission
     def get_success_url(self):
@@ -29,10 +41,14 @@ class CreateProjectView(CreateView):
         print(formset.errors)
         if formset.is_valid() and form.is_valid():
             # saves Father and Children
-            project = form.save()
+            self.object = form.save(commit=False)
+            self.object.creator = self.request.user
+            self.object.save()
+            # self.object = project
             for crew_form in formset:
                 crew = crew_form.save(commit=False)
-                crew.project = project
+                crew.project = self.object
+                # crew.project = project
                 crew.save()
 
             return redirect(self.get_success_url())
@@ -55,7 +71,7 @@ class CreateProjectView(CreateView):
         return ctx
 
 
-# @user_passes_test(lambda u: u.is_contractor(), login_url='/auth/login/contractor')
+@user_passes_test(lambda u: u.is_contractor(), login_url='/auth/login/contractor')
 def project_created_view(request):
     return render(request, 'dashboard/contractor/project-created.html')
 
@@ -74,63 +90,38 @@ def manager_home_view(request):
 def contractor_home_view(request):
     return render(request, 'dashboard/contractor/project-list.html')
     # return HttpResponse(f'{request.user.email} is logged in')
-#
-# def test_create_project_view(request):
-#     project_form = ProjectForm(request.POST or None)
-#
-#     crew_formset = CrewFormset(request.POST or None)
-#
-#     context = {
-#         "form": project_form,
-#         "formset": crew_formset
-#     }
-#     if request.POST and request.FILES:
-#         print('project form is valid: ', project_form.is_valid())
-#         print('crew form is valid: ', crew_formset.is_valid())
-#         print('request image: ', request.FILES)
-#     if all([project_form.is_valid(), crew_formset.is_valid()]):
-#         project_form.save(commit=False)
-#         print('project form: ', project_form.cleaned_data)
-#         print('crew form: ', crew_formset.cleaned_data)
-#     # return render(request, 'dashboard/contractor/test.html', context)
-#     return render(request, 'dashboard/contractor/project-create.html', context)
-# FORMS = [
-#     ('one', ProjectForm1),
-#     ('two', ConstructionZoneForm),
-#     ('three', ConstructionDurationForm)
-# ]
-# TEMPLATES = {
-#     'one': 'dashboard/contractor/wizard-step1.html',  # Template for Step 1
-#     'two': 'dashboard/contractor/wizard-step2.html',  # Template for Step 2
-#     'three': 'dashboard/contractor/wizard-step3.html',  # Template for Step 3
-# }
-#
-#
-# class TestWizardView(SessionWizardView):
-#     # List of forms in the dashboard/contractor/wizard
-#     form_list = FORMS
-#     # template_name = 'dashboard/contractor/form-dashboard/contractor/wizard.html'
-#     file_storage = FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'dashboard/test'))
-#
-#     def get_template_names(self):
-#         return [TEMPLATES[self.steps.current]]
-#
-#     def get_form(self, step=None, data=None, files=None):
-#         # Override to handle file uploads
-#         return super().get_form(step, data, files)
-#
-#     def done(self, form_list, **kwargs):
-#         # Process the form data after all steps are completed
-#         project_data = form_list[0].cleaned_data
-#         construction_zone_data = form_list[1].cleaned_data
-#         duration_data = form_list[2].cleaned_data
-#
-#         # Access the uploaded photo
-#         photo = construction_zone_data['photo']
-#         # You can save the photo or perform other processing
-#
-#         return render(self.request, 'dashboard/contractor/done.html', {
-#             'project_data': project_data,
-#             'construction_zone_data': construction_zone_data,
-#             'duration_data': duration_data,
-#         })
+
+
+class ContractorProjectListView(UserPassesTestMixin, ListView):
+    model = Project
+    context_object_name = 'projects'
+    template_name = 'dashboard/contractor/project-list.html'
+
+    def get_queryset(self):
+        return Project.objects.filter(creator=self.request.user)
+
+    def test_func(self):
+        return self.request.user.is_contractor()
+
+    def handle_no_permission(self):
+        return redirect_to_login(
+            self.request.get_full_path(),
+            reverse('login', kwargs={'user_type': 'contractor'}),
+            'next'
+        )
+
+
+class ContractorProjectDetailView(UserPassesTestMixin, DetailView):
+    model = Project
+    # context_object_name = 'project'
+    template_name = 'dashboard/contractor/project-detail.html'
+
+    def test_func(self):
+        return self.request.user.is_contractor()
+
+    def handle_no_permission(self):
+        return redirect_to_login(
+            self.request.get_full_path(),
+            reverse('login', kwargs={'user_type': 'contractor'}),
+            'next'
+        )

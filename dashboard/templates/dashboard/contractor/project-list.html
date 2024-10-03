@@ -91,29 +91,21 @@
 
 <div class="content">
     <div class="project-list">
-        <div class="project-item">
-            <span>Pearson Lift</span>
-            <div class="project-info">
-                <span>Notifications: 3</span>
-                <span>State: Schedule Resubmission</span>
+        {% for project in projects %}
+            <a href="{{ project.get_absolute_url }}">
+            <div class="project-item">
+                <span>{{ project.name }}</span>
+                <div class="project-info">
+                    <span>Notifications:{{ project.notifications|length }}</span>
+                    {#                <span>State: Schedule Resubmission</span>#}
+                    <span>State: {{ project.get_status_display }}</span>
+                </div>
             </div>
-        </div>
-        <div class="project-item">
-            <span>Stage 1</span>
-            <div class="project-info">
-                <span>Notifications: 2</span>
-                <span>State: Pending</span>
-            </div>
-        </div>
-        <div class="project-item">
-            <span>Phase 1</span>
-            <div class="project-info">
-                <span>Notifications: 2</span>
-                <span>State: Confirmed</span>
-            </div>
-        </div>
+            </a>
+        {% endfor %}
+
     </div>
-    <div ><a class="add-button" href="{% url 'create-project' %}">+</a></div>
+    <div><a class="add-button" href="{% url 'create-project' %}">+</a></div>
     <button class="logout-btn">Log Out</button>
 </div>
 </body>

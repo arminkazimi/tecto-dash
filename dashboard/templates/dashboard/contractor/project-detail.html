@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearson Lift Information</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header style */
+        .header {
+            background-color: #f7b500;
+            height: 50px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+        }
+
+        .header a {
+            color: #f7b500;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Container margin adjustment for the fixed header */
+        .container {
+            margin-top: 80px; /* Adjust for the header */
+        }
+
+        /* Info box style */
+        .info-box {
+            background-color: #e0e0e0; /* Light grey for the box */
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #333; /* Dark text */
+        }
+
+        .info-box span {
+            color: #333; /* Dark text */
+        }
+
+        /* Style for the edit icon */
+        .info-box i {
+            color: #333; /* Dark icon */
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Title and notification colors */
+        .title-yellow {
+            color: #f7b500; /* Yellow color for titles */
+        }
+
+        /* Notification section style */
+        .notification-box {
+            background-color: #f7b500;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        h4 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <a href="{% url 'project-list' %}">Back</a>
+    </div>
+
+    <!-- Main content container -->
+    <div class="container text-center">
+
+        <!-- Title with yellow color -->
+        <h3 class="title-yellow">Pearson Lift Information</h3>
+<p>{{ project.creator }}</p>
+        <!-- Status -->
+        <div class="info-box">
+            <span>Status: {{ project.get_status_display }}</span>
+            <i class="fas fa-pencil-alt"></i> <!-- Edit Icon -->
+        </div>
+
+        <!-- Zone -->
+        <div class="info-box">
+            <span>Zone</span>
+            <i class="fas fa-pencil-alt"></i>
+        </div>
+
+        <!-- Path -->
+        <div class="info-box">
+            <span>Path</span>
+            <i class="fas fa-pencil-alt"></i>
+        </div>
+
+        <!-- Duration -->
+        <div class="info-box">
+            <span>Duration: {{ project.duration}}</span>
+            <i class="fas fa-pencil-alt"></i>
+        </div>
+
+        <!-- Number of Workers -->
+        <div class="info-box">
+            <span>Number Of Workers: {{ project.get_total_workers }}</span>
+            <i class="fas fa-pencil-alt"></i>
+        </div>
+
+        <!-- Working Hours -->
+        <div class="info-box">
+            <span>Working Hours: 8:00 AM - 05:00 PM</span>
+            <i class="fas fa-pencil-alt"></i>
+        </div>
+
+        <!-- Machinery Equipments -->
+        <div class="info-box">
+            <span>Machinery Equipments</span>
+            <p>Drill, Chainsaw, Hammer</p>
+            <i class="fas fa-pencil-alt"></i>
+        </div>
+
+        <!-- Big Tools -->
+        <div class="info-box">
+            <span>Big Tools</span>
+            <p>Crane, Lift Truck</p>
+            <i class="fas fa-pencil-alt"></i>
+        </div>
+
+        <!-- Notification Section with yellow color -->
+        <h4 class="title-yellow">Notification</h4>
+
+        <!-- Notification Items -->
+        <div class="notification-box d-flex justify-content-between">
+            <span>Schedule Resubmission</span>
+            <span>10/05/2024</span>
+        </div>
+
+        <div class="notification-box d-flex justify-content-between">
+            <span>Project Submitted</span>
+            <span>10/05/2024</span>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap and FontAwesome JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- FontAwesome for edit icons -->
+</body>
+</html>

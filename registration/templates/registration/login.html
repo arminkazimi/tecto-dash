@@ -83,6 +83,7 @@
     <!-- Login Form -->
     <form method="post">
         {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
         {{ form }}
         {#        <!-- Email Input -->#}
         {#        <div class="form-group">#}
