@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tectotrack - Disruption Phase 1</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* General styles */
+        body {
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header section */
+        .header {
+            background-color: #f7b500;
+            color: black;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header a {
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* Main container */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        /* Left-side panel */
+        .left-panel {
+            width: 20%;
+            background-color: #444;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .left-panel h4 {
+            margin-bottom: 20px;
+            color: #f7b500;
+        }
+
+        .left-panel .info-box {
+            background-color: #555;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .left-panel .info-box span {
+            font-weight: bold;
+        }
+
+        .btn-simulation {
+            background-color: #f7b500;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* Activity zone container */
+        .activity-zone {
+            width: 60%;
+            padding: 20px;
+        }
+
+        .activity-zone h4 {
+            background-color: #444;
+            color: #f7b500;
+            padding: 10px;
+        }
+
+        /* Notification panel */
+        .notification-panel {
+            width: 20%;
+            background-color: #555;
+            padding: 20px;
+        }
+
+        .notification-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #666;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background-color: #777;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .toggle-switch:before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+        }
+
+        .active .toggle-switch:before {
+            left: 22px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Disruptions Phase 1</h1>
+        <a href="{% url 'home' %}">Home</a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <div>
+                <h4>Activity Zone & Logistics</h4>
+                <div class="info-box">
+                    <span>Duration:</span> 12/05/2024 - 12/07/2024
+                </div>
+                <div class="info-box">
+                    <span>Working Hours:</span> 8:00 AM - 05:00 PM
+                </div>
+                <div class="info-box">
+                    <span>Number Of Workers:</span> 15
+                </div>
+                <div class="info-box">
+                    <span>Assumed Noise Level:</span> 115dB
+                </div>
+                <div class="info-box">
+                    <span>Equipments:</span>
+                    <p>Light: Drill, Chainsaw, Hammer</p>
+                    <p>Heavy: Crane, Lift Truck, Scissor Lift</p>
+                </div>
+                <div class="info-box">
+                    <span>Duration:</span> 1y 2m 3w 4d 7h 46m
+                </div>
+                <div class="info-box">
+                    <span>Manhour:</span> 100,000h
+                </div>
+            </div>
+            <button class="btn btn-simulation btn-lg">Run Simulation</button>
+        </div>
+
+        <!-- Activity Zone -->
+        <div class="activity-zone">
+            <h4>Activity Zone & Logistics</h4>
+            <!-- This can be a canvas or an image -->
+            <canvas id="activityCanvas" width="600" height="400" style="background-color: #fff;"></canvas>
+        </div>
+
+        <!-- Notification Panel -->
+        <div class="notification-panel">
+            <div class="notification-item">
+                <span>Notification 1</span>
+                <div class="toggle-switch"></div>
+            </div>
+            <div class="notification-item">
+                <span>Notification 2</span>
+                <div class="toggle-switch"></div>
+            </div>
+            <div class="notification-item">
+                <span>Notification 3</span>
+                <div class="toggle-switch"></div>
+            </div>
+            <div class="notification-item">
+                <span>Notification 4</span>
+                <div class="toggle-switch"></div>
+            </div>
+            <div class="notification-item">
+                <span>Notification 5</span>
+                <div class="toggle-switch active"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Example for canvas drawing (optional) -->
+    <script>
+        var canvas = document.getElementById('activityCanvas');
+        var ctx = canvas.getContext('2d');
+        // Example drawing on canvas (you can replace this with your own logic)
+        ctx.fillStyle = 'red';
+        ctx.fillRect(100, 100, 100, 100);
+    </script>
+</body>
+</html>
