@@ -86,6 +86,25 @@ def manager_home_view(request):
     return HttpResponse(f'{request.user.email} is logged in')
 
 
+class ManagerProjectListView(UserPassesTestMixin, ListView):
+    model = Project
+    context_object_name = 'projects'
+    template_name = 'dashboard/manager/project-list.html'
+
+    # def get_queryset(self):
+    #     return Project.objects.filter(creator=self.request.user)
+
+    def test_func(self):
+        return self.request.user.is_manager()
+
+    def handle_no_permission(self):
+        return redirect_to_login(
+            self.request.get_full_path(),
+            reverse('login', kwargs={'user_type': 'manager'}),
+            'next'
+        )
+
+
 @user_passes_test(lambda u: u.is_contractor(), login_url='/auth/login/contractor')
 def contractor_home_view(request):
     return render(request, 'dashboard/contractor/project-list.html')

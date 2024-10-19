@@ -1,112 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #2e2e2e;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+{% extends '_base.html' %}
+{% load static %}
 
-        .header {
-            background-color: #ffcc00;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            padding-left: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
+{% block title %}Login{% endblock %}
 
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
 
-        .content h1 {
-            color: #ffcc00;
-            text-align: left;
-            margin-bottom: 30px;
-        }
-
-        .project-list {
-            margin: 0 auto;
-            width: 50%;
-            text-align: left;
-        }
-
-        .project-item {
-            background-color: #f0f0f0;
-            color: black;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .add-button {
-            font-size: 40px;
-            color: #ffcc00;
-            margin: 20px 0;
-        }
-
-        .add-button:hover {
-            cursor: pointer;
-        }
-
-        .logout-btn {
-            background-color: #ffcc00;
-            color: black;
-            border: none;
-            padding: 10px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-        }
-
-        .logout-btn:hover {
-            cursor: pointer;
-            background-color: #e6b800;
-        }
-
-        .project-info {
-            display: flex;
-            justify-content: space-between;
-            width: 200px;
-        }
-    </style>
-</head>
-<body>
-<div class="header">
-    Projects
-</div>
-
-<div class="content">
-    <div class="project-list">
+{% block body %}
+    <div class="contractor-header"></div>
+    <div class="container justify-content-center ">
+        <div class="row justify-content-center mt-3">
+            <div class="col-7">
+                <h3 class="x-warning">Projects</h3>
+            </div>
+        </div>
         {% for project in projects %}
-            <a href="{{ project.get_absolute_url }}">
-            <div class="project-item">
-                <span>{{ project.name }}</span>
-                <div class="project-info">
-                    <span>Notifications:{{ project.notifications|length }}</span>
-                    {#                <span>State: Schedule Resubmission</span>#}
-                    <span>State: {{ project.get_status_display }}</span>
+            <div class="row justify-content-center mt-3">
+                <div class="col-7">
+                    <a href="{{ project.get_absolute_url }}" class="text-decoration-none">
+                        <div class="project-list rounded-2 d-flex justify-content-around">
+                            <div>
+                                <h4 class="x-black">{{ project.name }}</h4>
+                            </div>
+                            <div class=" d-flex align-items-center flex-column">
+                                <p class="x-black">Notifications</p>
+                                <h5 class="x-black">{{ project.notifications|length }}</h5>
+                            </div>
+                            <div>
+                                <p class="x-black">State</p>
+                                <h6 class="x-black">{{ project.get_status_display }}</h6>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
-            </a>
         {% endfor %}
-
+        <div class="row justify-content-center mt-3">
+            <div class="col-1 d-flex justify-content-center">
+                <h1 class="x-warning">+</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center fixed-bottom mb-5">
+            <div class="col-2 ">
+                <div class="d-grid">
+                    <button type="button" class="btn btn-warning">Log out</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div><a class="add-button" href="{% url 'create-project' %}">+</a></div>
-    <button class="logout-btn">Log Out</button>
-</div>
-</body>
-</html>
+
+{% endblock body %}

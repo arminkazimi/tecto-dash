@@ -1,80 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Switch Panel</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #333;
-            color: #fff;
-        }
+{% extends '_base.html' %}
+{% load static %}
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+{% block title %}Switch Panel{% endblock %}
 
-        .column {
-            width: 50%;
-            padding: 20px;
-            text-align: center;
-        }
 
-        .column h2 {
-            font-size: 2em;
-            margin-bottom: 10px;
-            color: #666;
-        }
+{% block body %}
+    <div class="container min-vh-100 d-flex flex-column text-center">
+        <div class="row flex-grow-1 align-items-center mt-2">
+            <div class="col">
+                <a href="{% url 'login' 'contractor' %}" class="text-decoration-none">
+                    <img src="{% static 'icons/favicon.svg' %}">
+                    <h1 class="text-secondary">Tectotrack</h1>
+                    <h3 class="x-warning">Disruptive Projects</h3>
+                </a>
+            </div>
+            <div class="col">
+                <a href="{% url 'login'  'manager' %}" class="text-decoration-none">
+                    <img src="{% static 'icons/favicon.svg' %}">
 
-        .column p {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #ffa500;
-        }
-
-        .column img {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #0f0;
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 1em;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <div class="column">
-        <h2>⚛️ Tectotrack</h2>
-        <p>⚛️ Disruptive Projects</p>
-        <a href="{% url 'login' 'manager' %}" class="btn">Login as Manager</a>
+                    <h1 class="text-secondary">Tectotrack</h1>
+                    <h3 class="x-primary">User Experience</h3>
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="column">
-        <h2>⚛️ Tectotrack</h2>
-        <p>⚛️ User Experience</p>
-        <a href="{% url 'login'  'contractor' %}" class="btn">Login as Contractor</a>
-    </div>
-</div>
-</body>
-</html>
+{% endblock body %}
