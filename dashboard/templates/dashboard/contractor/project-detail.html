@@ -84,8 +84,15 @@
 
 {% block body %}
     <div class="contractor-header"></div>
-    <div class="container justify-content-center ">
-        <div class="row justify-content-center mt-5">
+    <div class="container-fluid justify-content-center ">
+        <div class="row justify-content-center ms-0 mt-3">
+            <a href="{% url 'project-list' %}" class="text-decoration-none">
+                <div class="col-12 d-flex justify-content-strat">
+                    <h5 class="x-warning">Back</h5>
+                </div>
+            </a>
+        </div>
+        <div class="row justify-content-center mt-2">
             <div class="col-9 d-flex justify-content-center">
                 <h3 class="x-warning">{{ project.name }} Information</h3>
             </div>
@@ -219,89 +226,3 @@
     </div>
 
 {% endblock body %}
-{#<body>#}
-{##}
-{#    <!-- Header -->#}
-{#    <div class="header">#}
-{#        <a href="{% url 'project-list' %}">Back</a>#}
-{#    </div>#}
-{##}
-{#    <!-- Main content container -->#}
-{#    <div class="container text-center">#}
-{##}
-{#        <!-- Title with yellow color -->#}
-{#        <h3 class="title-yellow">Pearson Lift Information</h3>#}
-{#<p>{{ project.creator }}</p>#}
-{#        <!-- Status -->#}
-{#        <div class="info-box">#}
-{#            <span>Status: {{ project.get_status_display }}</span>#}
-{#            <i class="fas fa-pencil-alt"></i> <!-- Edit Icon -->#}
-{#        </div>#}
-{##}
-{#        <!-- Zone -->#}
-{#        <div class="info-box">#}
-{#            <span>Zone</span>#}
-{#            <i class="fas fa-pencil-alt"></i>#}
-{#        </div>#}
-{##}
-{#        <!-- Path -->#}
-{#        <div class="info-box">#}
-{#            <span>Path</span>#}
-{#            <i class="fas fa-pencil-alt"></i>#}
-{#        </div>#}
-{##}
-{#        <!-- Duration -->#}
-{#        <div class="info-box">#}
-{#            <span>Duration: {{ project.duration}}</span>#}
-{#            <i class="fas fa-pencil-alt"></i>#}
-{#        </div>#}
-{##}
-{#        <!-- Number of Workers -->#}
-{#        <div class="info-box">#}
-{#            <span>Number Of Workers: {{ project.get_total_workers }}</span>#}
-{#            <i class="fas fa-pencil-alt"></i>#}
-{#        </div>#}
-{##}
-{#        <!-- Working Hours -->#}
-{#        <div class="info-box">#}
-{#            <span>Working Hours: 8:00 AM - 05:00 PM</span>#}
-{#            <i class="fas fa-pencil-alt"></i>#}
-{#        </div>#}
-{##}
-{#        <!-- Machinery Equipments -->#}
-{#        <div class="info-box">#}
-{#            <span>Machinery Equipments</span>#}
-{#            <p>Drill, Chainsaw, Hammer</p>#}
-{#            <i class="fas fa-pencil-alt"></i>#}
-{#        </div>#}
-{##}
-{#        <!-- Big Tools -->#}
-{#        <div class="info-box">#}
-{#            <span>Big Tools</span>#}
-{#            <p>Crane, Lift Truck</p>#}
-{#            <i class="fas fa-pencil-alt"></i>#}
-{#        </div>#}
-{##}
-{#        <!-- Notification Section with yellow color -->#}
-{#        <h4 class="title-yellow">Notification</h4>#}
-{##}
-{#        <!-- Notification Items -->#}
-{#        <div class="notification-box d-flex justify-content-between">#}
-{#            <span>Schedule Resubmission</span>#}
-{#            <span>10/05/2024</span>#}
-{#        </div>#}
-{##}
-{#        <div class="notification-box d-flex justify-content-between">#}
-{#            <span>Project Submitted</span>#}
-{#            <span>10/05/2024</span>#}
-{#        </div>#}
-{##}
-{#    </div>#}
-{##}
-{#    <!-- Bootstrap and FontAwesome JS -->#}
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>#}
-{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>#}
-{#    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- FontAwesome for edit icons -->#}
-{#</body>#}
-{#</html>#}

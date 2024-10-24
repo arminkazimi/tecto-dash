@@ -29,6 +29,9 @@
         .x-black {
             color: #0c0c0c
         }
+        .x-bg-black {
+            background-color: #0c0c0c
+        }
 
         .contractor-header {
             background-color: #ffbf00;
@@ -61,6 +64,73 @@
             height: 60px;
         }
 
+        .location-icon {
+            width: auto;
+            max-height: 20px;
+        }
+        .map-container {
+            width: auto;
+            max-height: 670px;
+        }
+
+        .radio-btn-item {
+            background-color: #faf9f5;
+            width: 100%;
+            height: 38px;
+        }
+
+        .my-btn-primary {
+            background-color: #ffcc00;
+            color: black;
+            border: none;
+            padding: 10px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .my-btn-primary:hover {
+            background-color: #e6b800;
+        }
+
+        .cancel {
+            color: #ffcc00;
+            font-size: 16px;
+        }
+
+        .cancel:hover {
+            cursor: pointer;
+        }
+
+        /* Hide all steps by default: */
+        .tab {
+            display: none;
+        }
+
+        /* Make circles that indicate the steps of the form: */
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #04AA6D;
+        }
+
+        .hidden {
+            display: none;
+        }
 
     </style>
 </head>
