@@ -16,23 +16,42 @@
             <div class="row justify-content-center mt-3">
                 <div class="col-7">
                     <a href="{{ project.get_absolute_url }}" class="text-decoration-none">
-                        <div class="project-list rounded-2 d-flex justify-content-around">
-                            <div>
+                        <div class="project-list rounded-2 position-relative">
+                            <div class=" position-absolute top-0 start-0 ms-3">
                                 <h4 class="x-black">{{ project.name }}</h4>
                             </div>
-                            <div class=" d-flex align-items-center flex-column">
+                            <div class="d-flex align-items-center flex-column position-absolute top-0 start-50 translate-middle-x">
                                 <p class="x-black">Notifications</p>
                                 <h5 class="x-black">{{ project.notifications|length }}</h5>
                             </div>
-                            <div>
+                            <div class="position-absolute top-0 end-0 pe-3">
                                 <p class="x-black">State</p>
-                                <h6 class="x-black">{{ project.get_status_display }}</h6>
+                                <h6 class="x-black">{{ project.get_status_display }} </h6>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
         {% endfor %}
+    <div class="row justify-content-center mt-3">
+                <div class="col-7">
+                    <a href="{{ project.get_absolute_url }}" class="text-decoration-none">
+                        <div class="project-list rounded-2 position-relative">
+                            <div class=" position-absolute top-0 start-0 ms-3">
+                                <h4 class="x-black">{{ project.name }}</h4>
+                            </div>
+                            <div class="d-flex align-items-center flex-column position-absolute top-0 start-50 translate-middle-x">
+                                <p class="x-black">Notifications</p>
+                                <h5 class="x-black">{{ project.notifications|length }}</h5>
+                            </div>
+                            <div class="position-absolute top-0 end-0 pe-3">
+                                <p class="x-black">State</p>
+                                <h6 class="x-black">{{ project.get_status_display }}testestestest </h6>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         <div class="row justify-content-center mt-3">
             <div class="col-1 d-flex justify-content-center">
                 <a href="{% url 'create-project' %}" class="text-decoration-none">
