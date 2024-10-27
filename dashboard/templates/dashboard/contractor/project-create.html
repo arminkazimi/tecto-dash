@@ -7,19 +7,23 @@
 {% block body %}
     <div class="contractor-header"></div>
     <div class="container-fluid ">
-        <div class="row justify-content-center me-0 mt-3">
-            <button type="button" id="prevBtn" class="btn warning x-warning" onclick="nextPrev(-1)">Back</button>
+        <div class="row justify-content-between me-0 mt-3">
+            <div class="col-1">
+                <button type="button" id="prevBtn" class="btn warning x-warning" onclick="nextPrev(-1)">Back</button>
+            </div>
+            <div class="col-1">
+                <a href="{% url 'project-list' %}" class="text-decoration-none">
 
-            <a href="{% url 'project-list' %}" class="text-decoration-none">
-                <div class="col-12 d-flex justify-content-end">
                     <h5 class="x-warning">Cancel</h5>
-                </div>
-            </a>
+
+                </a>
+            </div>
+
         </div>
         <form id="project-form" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="content">
-<!--
+                <!--
                 <div class="tab">
                     <div class="row mt-2 d-flex flex-column align-items-center">
                         <div class="col-5 d-flex justify-content-center">
@@ -28,8 +32,7 @@
 
                         </div>
                         <div class="col-5 d-flex justify-content-center mt-2">
-                            <div class="input-group">
-                                <label for="id_name"> </label>
+
 
                                 <input name="name"
                                        id="id_name"
@@ -39,7 +42,7 @@
                                        value="{{ form.name.value|default_if_none:"" }}"
                                        placeholder="Enter Project Name">
                             </div>
-                        </div>
+
                         <div class="col-5 d-flex justify-content-center mt-4">
                             <img class="location-icon mt-2 me-1" src="{% static 'icons/location.svg' %}" alt="location icon">
                             <h3 class="x-warning ms-1">Geographical Level</h3>
@@ -127,59 +130,99 @@
                         </div>
                     </div>
                 </div>
--->
 
                 <div class="tab">
                     <div class="row mt-2 d-flex flex-column align-items-center">
                         <div class="col-5 d-flex justify-content-center">
                             <h3 class="x-warning">Draw Construction Zone</h3>
                         </div>
-                        <div class="col d-flex justify-content-center mt-3">
+                        <div class="col-9 d-flex justify-content-center mt-3">
                             {#                        <input id="imageInput" name="image" type="file" class="form-control" accept="image/*"#}
                             {#                               oninput="this.className = ''" value="{{ form.image.value|default_if_none:"" }}">#}
                             <img id="imagePreview" class="map-container" src="{% static 'img/map.png' %}" alt="map"/>
                         </div>
                         <div class="col-9 mt-3">
-                            <div class="position-relative map-container">
-                                <div class="position-absolute top-50 start-0 translate-middle-y ms-2">
+                            <div class="d-flex map-container">
+                                <div class=" ms-2">
                                     <div class="d-flex justify-content-start">
-                                        <img id="imagePreview" class="" src="{% static 'icons/edit.svg' %}"
+                                        <img id="imagePreview" class="me-4" src="{% static 'icons/zoomout.svg' %}"
                                              alt="zoom out"/>
-                                        <img id="imagePreview" class="" src="{% static 'icons/edit.svg' %}"
+                                        <img id="imagePreview" class="me-4" src="{% static 'icons/zoomin.svg' %}"
                                              alt="zoom in"/>
-                                        <img id="imagePreview" class="" src="{% static 'icons/edit.svg' %}"
+                                        <img id="imagePreview" class="" src="{% static 'icons/fullscreen.svg' %}"
                                              alt="full screen"/>
                                     </div>
                                 </div>
-                                <div class="position-absolute top-50 end-0 translate-middle-y me-2">
+                                <div class=" me-2 ms-auto">
 
                                     <h5>Clear</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="tab">
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="startDate" class="form-label">Start Date</label>
-                            <input type="date"
-                                   class="form-control"
-                                   id="startDate"
-                                   name="start_date"
-                                   value="{{ form.start_date.value|default_if_none:"" }}"
-                                   required>
+                    <div class="row mt-2 d-flex flex-column align-items-center">
+                        <div class="col-5 d-flex justify-content-center">
+                            <h3 class="x-warning">Draw Supply Paths</h3>
                         </div>
-                        <div class="col">
-                            <label for="endDate" class="form-label">End Date</label>
-                            <input type="date"
-                                   class="form-control"
-                                   id="endDate"
-                                   name="end_date"
-                                   value="{{ form.end_date.value|default_if_none:"" }}"
-                                   required>
+                        <div class="col-9 d-flex justify-content-center mt-3">
+                            {#                        <input id="imageInput" name="image" type="file" class="form-control" accept="image/*"#}
+                            {#                               oninput="this.className = ''" value="{{ form.image.value|default_if_none:"" }}">#}
+                            <img id="imagePreview" class="map-container" src="{% static 'img/map.png' %}" alt="map"/>
+                        </div>
+                        <div class="col-9 mt-3">
+                            <div class="d-flex map-container">
+                                <div class=" ms-2">
+                                    <div class="d-flex justify-content-start">
+                                        <img id="imagePreview" class="me-4" src="{% static 'icons/zoomout.svg' %}"
+                                             alt="zoom out"/>
+                                        <img id="imagePreview" class="me-4" src="{% static 'icons/zoomin.svg' %}"
+                                             alt="zoom in"/>
+                                        <img id="imagePreview" class="" src="{% static 'icons/fullscreen.svg' %}"
+                                             alt="full screen"/>
+                                    </div>
+                                </div>
+                                <div class=" me-2 ms-auto">
+
+                                    <h5>Clear</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            -->
+                <div class="tab">
+                    <div class="row mt-2 d-flex flex-column align-items-center">
+                        <div class="col-5 d-flex justify-content-center">
+
+                            <h3 class="x-warning">Construction Duration</h3>
+
+                        </div>
+                    </div>
+                    <div class="row mt-2 d-flex justify-content-center">
+                        <div class="col-5">
+                            <div class="row d-flex justify-content-center">
+
+                                <div class="col d-flex flex-column align-items-center">
+                                    <label for="startDate" class="form-label">Start Date</label>
+                                    <input type="date"
+                                           class="form-control text-center"
+                                           id="startDate"
+                                           name="start_date"
+                                           value="{{ form.start_date.value|default_if_none:"" }}"
+                                           required>
+                                </div>
+                                <div class="col d-flex flex-column align-items-center">
+                                    <label for="endDate" class="form-label">End Date</label>
+                                    <input type="date"
+                                           class="form-control text-center"
+                                           id="endDate"
+                                           name="end_date"
+                                           value="{{ form.end_date.value|default_if_none:"" }}"
+                                           required>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <h2 class="text-center text-warning">Crew Name</h2>
@@ -248,7 +291,7 @@
                 </div>
                 <div id='empty-form' class="hidden">{{ formset.empty_form.as_div }}</div>
                 <div class="row ">
-                    <div class="col d-flex justify-content-center mt-5">
+                    <div class="col d-flex justify-content-center mt-5 mb-5">
                         <button
                                 type="button"
                                 id="nextBtn"
