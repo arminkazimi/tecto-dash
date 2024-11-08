@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import redirect_to_login
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import CreateView, ListView, DetailView
@@ -82,8 +81,8 @@ def project_created_view(request):
 
 @user_passes_test(lambda u: u.is_manager(), login_url='/auth/login/manager')
 def manager_home_view(request):
-    # return render(request, 'manager_dashboard/project-list.html')
-    return HttpResponse(f'{request.user.email} is logged in')
+    return render(request, 'dashboard/manager/project-list.html')
+    # return HttpResponse(f'{request.user.email} is logged in')
 
 
 class ManagerProjectListView(UserPassesTestMixin, ListView):

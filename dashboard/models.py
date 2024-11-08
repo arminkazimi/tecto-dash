@@ -36,13 +36,18 @@ class Project(models.Model):
     # image = models.ImageField(upload_to='dashboard/project-image/', blank=True, null=True)
     start_date = models.DateField()
     end_date = models.DateField()
-    duration = models.DurationField()
-    man_hour = models.DurationField()
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
         return reverse("project-detail", kwargs={"pk": self.pk})
+
+    def get_duration(self):
+        pass
+
+    def get_man_hour(self):
+        pass
 
     def get_total_workers(self):
         total_workers = self.crews.all().aggregate(Sum('crew_count'))['crew_count__sum']
@@ -52,7 +57,7 @@ class Project(models.Model):
 class Crew(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='crews')
     title = models.CharField(max_length=100)
-    crew_count = models.PositiveIntegerField(default=1)
+    crew_count = models.PositiveIntegerField(default=0)
     start_time = models.TimeField()
     end_time = models.TimeField()
     created_at = models.DateTimeField(auto_now_add=True)

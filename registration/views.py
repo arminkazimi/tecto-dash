@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse
 
 from core.models import CustomUser
@@ -21,3 +21,6 @@ class CustomLoginView(LoginView):
             return reverse('manager-home')
         elif user.type == CustomUser.Types.CONTRACTOR:
             return reverse('contractor-home')
+
+
+

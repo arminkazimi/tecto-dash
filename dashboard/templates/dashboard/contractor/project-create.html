@@ -1,13 +1,14 @@
 {% extends '_base.html' %}
 {% load static %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Create Project{% endblock %}
 
 
 {% block body %}
     <div class="contractor-header"></div>
+
     <div class="container-fluid ">
-        <div class="row justify-content-between me-0 mt-3">
+        <div class="row justify-content-between me-0 mt-3 ">
             <div class="col-1">
                 <button type="button" id="prevBtn" class="btn warning x-warning" onclick="nextPrev(-1)">Back</button>
             </div>
@@ -18,12 +19,11 @@
 
                 </a>
             </div>
-
         </div>
         <form id="project-form" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="content">
-                <!--
+
                 <div class="tab">
                     <div class="row mt-2 d-flex flex-column align-items-center">
                         <div class="col-5 d-flex justify-content-center">
@@ -34,17 +34,18 @@
                         <div class="col-5 d-flex justify-content-center mt-2">
 
 
-                                <input name="name"
-                                       id="id_name"
-                                       class="form-control"
-                                       type="text"
-                                       oninput="this.className = 'form-control' "
-                                       value="{{ form.name.value|default_if_none:"" }}"
-                                       placeholder="Enter Project Name">
-                            </div>
+                            <input name="name"
+                                   id="id_name"
+                                   class="form-control"
+                                   type="text"
+                                   oninput="this.className = 'form-control' "
+                                   value="{{ form.name.value|default_if_none:"" }}"
+                                   placeholder="Enter Project Name">
+                        </div>
 
                         <div class="col-5 d-flex justify-content-center mt-4">
-                            <img class="location-icon mt-2 me-1" src="{% static 'icons/location.svg' %}" alt="location icon">
+                            <img class="location-icon mt-2 me-1" src="{% static 'icons/location.svg' %}"
+                                 alt="location icon">
                             <h3 class="x-warning ms-1">Geographical Level</h3>
                         </div>
                         <div class="col-5 mt-2">
@@ -191,7 +192,6 @@
                         </div>
                     </div>
                 </div>
-            -->
                 <div class="tab">
                     <div class="row mt-2 d-flex flex-column align-items-center">
                         <div class="col-5 d-flex justify-content-center">
@@ -202,7 +202,7 @@
                     </div>
                     <div class="row mt-2 d-flex justify-content-center">
                         <div class="col-5">
-                            <div class="row d-flex justify-content-center">
+                            <div class="row d-flex justify-content-center g-1">
 
                                 <div class="col d-flex flex-column align-items-center">
                                     <label for="startDate" class="form-label">Start Date</label>
@@ -225,68 +225,145 @@
                             </div>
                         </div>
                     </div>
-                    <h2 class="text-center text-warning">Crew Name</h2>
+                    <div class="row mt-3 d-flex justify-content-center">
+                        <div class="col-5 d-flex justify-content-start">
+                            <h6 class="text-warning">Crew Name</h6>
+                        </div>
+                    </div>
                     {{ formset.management_form }}
                     <div id="crew-form-list">
 
                         {% for crew_form in formset %}
-                            <div id="form-{{ forloop.counter0 }}" class="row mb-3 crew-form">
-                                <div class="col">
-                                    <label for="id_form-{{ forloop.counter0 }}-title" class="form-label">Title</label>
-                                    <input type="text" class="form-control" id="form-{{ forloop.counter0 }}-title"
-                                           name="form-{{ forloop.counter0 }}-title"
-                                           value="{{ crew_form.title.value|default_if_none:"" }}"
-                                           required>
-                                </div>
-                                <div class="col">
-                                    <label for="form-{{ forloop.counter0 }}-crew_count" class="form-label">Count</label>
-                                    <input type="number" class="form-control"
-                                           id="form-{{ forloop.counter0 }}-crew_count"
-                                           name="form-{{ forloop.counter0 }}-crew_count"
-                                           value="{{ crew_form.crew_count.value|default_if_none:"" }}"
-                                           required>
-                                </div>
-                                <div class="col">
-                                    <label for="form-{{ forloop.counter0 }}-start_time" class="form-label">Start
-                                        Time</label>
-                                    <input type="time" class="form-control" id="form-{{ forloop.counter0 }}-start_time"
-                                           name="form-{{ forloop.counter0 }}-start_time"
-                                           value="{{ crew_form.start_time.value|default_if_none:"" }}"
-                                           required>
-                                </div>
-                                <div class="col">
-                                    <label for="form-{{ forloop.counter0 }}-end_time" class="form-label">End
-                                        Time</label>
-                                    <input type="time" class="form-control" id="form-{{ forloop.counter0 }}-end_time"
-                                           name="form-{{ forloop.counter0 }}-end_time"
-                                           value="{{ crew_form.end_time.value|default_if_none:"" }}" required>
+                            <div id="form-{{ forloop.counter0 }}"
+                                 class="row mt-0 mb-2 crew-form d-flex justify-content-center">
+                                <div class="col-5 ">
+                                    <div class="{% if forloop.counter0|divisibleby:2 %}x-bg-black{% else %}x-bg-surface-600{% endif %}">
+                                        <div class="row row-cols-2 g-1">
+                                            <div class="col">
+                                                {#                                            <label for="id_form-{{ forloop.counter0 }}-title"#}
+                                                {#                                                   class="form-label">Title</label>#}
+                                                <input type="text" class="form-control"
+                                                       id="form-{{ forloop.counter0 }}-title"
+                                                       name="form-{{ forloop.counter0 }}-title"
+                                                       value="{{ crew_form.title.value|default_if_none:"" }}"
+                                                       required>
+                                            </div>
+                                            <div class="col">
+                                                {#                                            <label for="form-{{ forloop.counter0 }}-crew_count"#}
+                                                {#                                                   class="form-label">Count</label>#}
+                                                <input type="number" class="form-control"
+                                                       id="form-{{ forloop.counter0 }}-crew_count"
+                                                       name="form-{{ forloop.counter0 }}-crew_count"
+                                                       value="{{ crew_form.crew_count.value|default_if_none:"" }}"
+                                                       min="0"
+                                                       required>
+                                            </div>
+                                            <div class="col d-flex justify-content-end align-items-end">
+                                                <div>
+                                                    <img src=" {% static 'icons/handyman.svg' %}"
+                                                         class="me-1"
+                                                         alt="handyman icon"
+                                                         width="38" height="38">
+                                                    <button class="btn btn-warning px-4" type="button">Tools</button>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="row d-flex justify-content-center g-1">
+
+                                                    <div class="col d-flex flex-column align-items-center">
+                                                        <label for="form-{{ forloop.counter0 }}-start_time"
+                                                               class="form-label">Start
+                                                            Time</label>
+                                                        <input type="time" class="form-control"
+                                                               id="form-{{ forloop.counter0 }}-start_time"
+                                                               name="form-{{ forloop.counter0 }}-start_time"
+                                                               value="{{ crew_form.start_time.value|default_if_none:"" }}"
+                                                               required>
+                                                    </div>
+                                                    <div class="col d-flex flex-column align-items-center">
+                                                        <label for="form-{{ forloop.counter0 }}-end_time"
+                                                               class="form-label">End
+                                                            Time</label>
+                                                        <input type="time" class="form-control"
+                                                               id="form-{{ forloop.counter0 }}-end_time"
+                                                               name="form-{{ forloop.counter0 }}-end_time"
+                                                               value="{{ crew_form.end_time.value|default_if_none:"" }}"
+                                                               required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                         {% endfor %}
                     </div>
+                    <div class="row mt-3 d-flex justify-content-center">
+                        <div class="col-5 d-flex justify-content-end">
+                            <a href="" id="add-crew-btn" class="pe-auto text-decoration-none">
 
-                    <button type="button" class="btn btn-success" id="add-crew-btn">+</button>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="duration" class="form-label">Duration</label>
-                            <input type="time"
-                                   class="form-control"
-                                   id="duration"
-                                   name="duration"
-                                   value="{{ form.duration.value|default_if_none:"" }}"
-                                   required>
-                        </div>
-                        <div class="col">
-                            <label for="man_hour" class="form-label">Man Hour</label>
-                            <input type="time"
-                                   class="form-control"
-                                   id="man_hour"
-                                   name="man_hour"
-                                   value="{{ form.man_hour.value|default_if_none:"" }}"
-                                   required>
+                                <h1 class="x-warning">
+                                    +
+                                </h1>
+                            </a>
                         </div>
                     </div>
+                    <div class="row mt-3 d-flex justify-content-center">
+                        <div class="col-5 d-flex justify-content-center">
+                            <h4 class="text-warning">Statistics</h4>
+                        </div>
+                    </div>
+                    <div class="row mt-2 d-flex justify-content-center">
+                        <div class="col-5">
+                            <div class="row d-flex justify-content-center g-1">
+
+                                <div class="col ">
+                                    <div class="x-bg-success-light statistics-item-card rounded d-flex justify-content-between align-items-center">
+                                        <div class="d-flex">
+                                            <img src=" {% static 'icons/timer.svg' %}"
+                                                 class="m-2"
+                                                 alt="timer icon"
+                                                 width="27" height="27">
+                                            <h5 class="x-surface-800 mt-2">Duration</h5>
+                                        </div>
+                                        <div class="d-flex me-4">
+
+                                            <h3 id="y" class="text-white mt-2 ms-2 ">0</h3>
+                                            <h3 class="x-surface-800 mt-2 me-2">y</h3>
+
+                                            <h3 id="m" class="text-white mt-2">0</h3>
+                                            <h3 class="x-surface-800 mt-2 me-2">m</h3>
+
+                                            <h3 id="w" class="text-white mt-2">0</h3>
+                                            <h3 class="x-surface-800 mt-2 me-2">w</h3>
+
+                                            <h3 id="d" class="text-white mt-2">0</h3>
+                                            <h3 class="x-surface-800 mt-2">d</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col ">
+                                    <div class="x-bg-success-light statistics-item-card rounded d-flex justify-content-between align-items-center">
+                                        <div class="d-flex">
+                                            <img src=" {% static 'icons/timer.svg' %}"
+                                                 class="m-2"
+                                                 alt="timer icon"
+                                                 width="27" height="27">
+                                            <h5 class="x-surface-800 mt-2">Manhour</h5>
+                                        </div>
+                                        <div class="d-flex me-4">
+
+                                            <h3 id="h" class="text-white mt-2 ms-2 ">0.00</h3>
+                                            <h3 class="x-surface-800 mt-2 me-2">h</h3>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
                 <div id='empty-form' class="hidden">{{ formset.empty_form.as_div }}</div>
@@ -323,30 +400,145 @@
             const currentCrewForms = document.getElementsByClassName('crew-form')
             let currentFormCount = currentCrewForms.length
             const formCopyTarget = document.getElementById('crew-form-list')
-            const copyEmptyFormEl = document.getElementById(('empty-form')).cloneNode(true)
-            {#copyEmptyFormEl.removeChild(copyEmptyFormEl.lastElementChild);#}
-            const divs = copyEmptyFormEl.getElementsByTagName("div")
-            for (const div of divs) {
-                div.setAttribute('class', 'col')
-                div.firstElementChild.setAttribute('class', 'form-label')
-                {#console.log(div.childNodes)#}
-                div.childNodes[3].setAttribute('class', 'form-control')
+
+            const copyEmptyFormEl = document.createElement('div');
+            copyEmptyFormEl.id = `form-${currentFormCount}`
+            copyEmptyFormEl.className = 'row mt-0 mb-2 crew-form d-flex justify-content-center';
+            //create internal element
+            const col = document.createElement('div');
+            col.className = 'col-5';
+
+            const surface = document.createElement('div');
+            if (currentFormCount % 2 === 0) {
+                surface.className = 'x-bg-black';
+            } else {
+                surface.className = 'x-bg-surface-600';
             }
-            //console.log(childEmptyEl)
 
+            const row = document.createElement('div');
+            row.className = 'row row-cols-2 g-1';
 
-            copyEmptyFormEl.setAttribute('class', 'row mb-3 crew-form')
-            copyEmptyFormEl.setAttribute('id', `form-${currentFormCount}`)
-            const regex = new RegExp('__prefix__', 'g')
-            copyEmptyFormEl.innerHTML = copyEmptyFormEl.innerHTML.replace(regex, currentFormCount)
+            //title field
+            const titleCol = document.createElement('div');
+            titleCol.className = 'col';
+
+            const titleInput = document.createElement('input');
+            titleInput.type = 'text';
+            titleInput.className = 'form-control';
+            titleInput.id = `form-${currentFormCount}-title`;
+            titleInput.name = `form-${currentFormCount}-title`;
+            titleInput.required = true;
+            titleCol.appendChild(titleInput);
+
+            //count field
+            const countCol = document.createElement('div');
+            countCol.className = 'col';
+
+            const countInput = document.createElement('input');
+            countInput.type = 'number';
+            countInput.className = 'form-control';
+            countInput.id = `form-${currentFormCount}-crew_count`;
+            countInput.name = `form-${currentFormCount}-crew_count`;
+            countInput.value = 1;
+            countInput.min = 0;
+            countInput.required = true;
+            countInput.addEventListener("change", calculateManhours);
+            countCol.appendChild(countInput);
+
+            //tools btn and handyman svg icon
+            const toolsCol = document.createElement('div');
+            toolsCol.className = 'col d-flex justify-content-end align-items-end';
+
+            const toolsDiv = document.createElement('div');
+
+            const img = document.createElement('img');
+            img.src = '/static/icons/handyman.svg';
+            img.className = 'me-1';
+            img.alt = 'handyman icon';
+            img.width = 38;
+            img.height = 38;
+
+            const button = document.createElement('button');
+            button.className = 'btn btn-warning px-4';
+            button.type = 'button';
+            button.innerText = 'Tools';
+
+            toolsDiv.appendChild(img);
+            toolsDiv.appendChild(button);
+            toolsCol.appendChild(toolsDiv);
+
+            //start and end time field
+            const timeCol = document.createElement('div');
+            timeCol.className = 'col';
+
+            const timeRow = document.createElement('div');
+            timeRow.className = 'row d-flex justify-content-center g-1';
+
+            const startTimeCol = document.createElement('div');
+            startTimeCol.className = 'col d-flex flex-column align-items-center';
+
+            const startLabel = document.createElement('label');
+            startLabel.for = `form-${currentFormCount}-start_time`;
+            startLabel.className = 'form-label';
+            startLabel.innerText = 'Start Time';
+
+            const startTimeInput = document.createElement('input');
+            startTimeInput.type = 'time';
+            startTimeInput.className = 'form-control';
+            startTimeInput.id = `form-${currentFormCount}-start_time`;
+            startTimeInput.name = `form-${currentFormCount}-start_time`;
+            startTimeInput.required = true;
+            startTimeInput.value = '';
+            startTimeInput.addEventListener("change", calculateManhours);
+
+            startTimeCol.appendChild(startLabel);
+            startTimeCol.appendChild(startTimeInput);
+
+            const endTimeCol = document.createElement('div');
+            endTimeCol.className = 'col d-flex flex-column align-items-center';
+
+            const endLabel = document.createElement('label');
+            endLabel.for = `form-${currentFormCount}-end_time`;
+            endLabel.className = 'form-label';
+            endLabel.innerText = 'End Time';
+
+            const endTimeInput = document.createElement('input');
+            endTimeInput.type = 'time';
+            endTimeInput.className = 'form-control';
+            endTimeInput.id = `form-${currentFormCount}-end_time`;
+            endTimeInput.name = `form-${currentFormCount}-end_time`;
+            endTimeInput.required = true;
+            endTimeInput.value = '';
+            endTimeInput.addEventListener("change", calculateManhours);
+
+            endTimeCol.appendChild(endLabel);
+            endTimeCol.appendChild(endTimeInput);
+
+            timeRow.appendChild(startTimeCol);
+            timeRow.appendChild(endTimeCol);
+            timeCol.appendChild(timeRow);
+
+            //add all elements to row
+            row.appendChild(titleCol);
+            row.appendChild(countCol);
+            row.appendChild(toolsCol);
+            row.appendChild(timeCol);
+
+            surface.appendChild(row);
+            col.appendChild(surface);
+            copyEmptyFormEl.appendChild(col);
             totalNewForms.setAttribute('value', currentFormCount + 1)
 
             {#copyEmptyFormEl.removeAttribute('id')#}
             formCopyTarget.append(copyEmptyFormEl)
 
         }
+        var currentTab = 0;
+        {% if request.GET.wizard %}
+             currentTab = {{ request.GET.wizard }};
 
-        var currentTab = 0; // Current tab is set to be the first tab (0)
+        {% endif %}
+        // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
 
         function showTab(n) {
@@ -381,6 +573,7 @@
             if (currentTab >= x.length) {
                 // ... the form gets submitted:
                 document.getElementById("project-form").submit();
+                showTab(3);
                 return false;
             }
             // Otherwise, display the correct tab:
@@ -427,5 +620,94 @@
         {#        imagePreview.setAttribute('class', '')#}
         {#    }#}
 
+        function calculateDateDifference() {
+            const startDate = new Date(document.getElementById("startDate").value);
+            const endDate = new Date(document.getElementById("endDate").value);
+
+            if (isNaN(startDate) || isNaN(endDate)) return;
+            if (endDate < startDate) {
+                //alert("End date cannot be earlier than start date.");
+                document.getElementById("y").textContent = "0";
+                document.getElementById("m").textContent = "0";
+                document.getElementById("w").textContent = "0";
+                document.getElementById("d").textContent = "0";
+                return;
+            }
+            let years = endDate.getFullYear() - startDate.getFullYear();
+            let months = endDate.getMonth() - startDate.getMonth();
+            let days = endDate.getDate() - startDate.getDate();
+
+            if (days < 0) {
+                months -= 1;
+                days += new Date(endDate.getFullYear(), endDate.getMonth(), 0).getDate();
+            }
+
+            if (months < 0) {
+                years -= 1;
+                months += 12;
+            }
+
+            const weeks = Math.floor(days / 7);
+            days %= 7;
+
+            document.getElementById("y").textContent = years;
+            document.getElementById("m").textContent = months;
+            document.getElementById("w").textContent = weeks;
+            document.getElementById("d").textContent = days;
+        }
+
+        document.getElementById("startDate").addEventListener("change", calculateDateDifference);
+        document.getElementById("endDate").addEventListener("change", calculateDateDifference);
+        //init for first tim
+        calculateDateDifference();
+
+        function calculateManhours() {
+            let totalManhours = 0;
+
+            document.querySelectorAll(".crew-form").forEach((form) => {
+                const startTimeInput = form.querySelector(`input[id*="-start_time"]`);
+                const endTimeInput = form.querySelector(`input[id*="-end_time"]`);
+                const crewCountInput = form.querySelector(`input[id*="-crew_count"]`);
+
+                if (!startTimeInput || !endTimeInput || !crewCountInput) return;
+
+                const startTime = startTimeInput.value;
+                const endTime = endTimeInput.value;
+                const crewCount = parseInt(Math.abs(crewCountInput.value)) || 0;
+
+                if (startTime && endTime) {
+                    const [startHours, startMinutes] = startTime.split(":").map(Number);
+                    const [endHours, endMinutes] = endTime.split(":").map(Number);
+
+                    // تبدیل ساعت و دقیقه به دقیقه و محاسبه اختلاف
+                    const startMinutesTotal = startHours * 60 + startMinutes;
+                    const endMinutesTotal = endHours * 60 + endMinutes;
+                    //const durationMinutes = Math.abs(endMinutesTotal - startMinutesTotal);3
+                    let durationMinutes = 0
+                    if (startMinutesTotal < endMinutesTotal) {
+                        durationMinutes = endMinutesTotal - startMinutesTotal;
+                    } else {
+                        durationMinutes = 1440 - (startMinutesTotal - endMinutesTotal);
+                    }
+                    if (durationMinutes > 0) {
+                        const manhours = (durationMinutes / 60) * crewCount;
+                        totalManhours += manhours;
+                    } else {
+                        alert("End time must be after start time for each crew form.");
+                    }
+
+
+                }
+            });
+
+            document.getElementById("h").textContent = totalManhours.toFixed(2);
+        }
+
+        document.querySelectorAll(".crew-form input[type='time'], .crew-form input[type='number']").forEach((input) => {
+            input.addEventListener("change", calculateManhours);
+        });
+
+        // init for first time
+        calculateManhours();
     </script>
 {% endblock body %}
