@@ -106,40 +106,53 @@ class ManagerProjectListView(UserPassesTestMixin, ListView):
 
 @user_passes_test(lambda u: u.is_contractor(), login_url='/auth/login/contractor')
 def contractor_home_view(request):
-    return render(request, 'dashboard/contractor/project-list.html')
+    return render(request, 'dashboard/contractor/templates/dashboard/project-list.html')
     # return HttpResponse(f'{request.user.email} is logged in')
 
 
-class ContractorProjectListView(UserPassesTestMixin, ListView):
+class ProjectListView(ListView):
     model = Project
     context_object_name = 'projects'
-    template_name = 'dashboard/contractor/project-list.html'
+    template_name = 'dashboard/project-list.html'
 
     def get_queryset(self):
-        return Project.objects.filter(creator=self.request.user)
-
-    def test_func(self):
-        return self.request.user.is_contractor()
-
-    def handle_no_permission(self):
-        return redirect_to_login(
-            self.request.get_full_path(),
-            reverse('login', kwargs={'user_type': 'contractor'}),
-            'next'
-        )
+        if self.request.user.is_contractor():
+            return Project.objects.filter(creator=self.request.user)
+        elif self.request.user.is_manager():
+            return Project.objects.all()
 
 
-class ContractorProjectDetailView(UserPassesTestMixin, DetailView):
+class ContractorProjectDetailView(DetailView):
     model = Project
     # context_object_name = 'project'
-    template_name = 'dashboard/contractor/project-detail.html'
+    template_name = 'dashboard/project-detail.html'
 
-    def test_func(self):
-        return self.request.user.is_contractor()
+    # def test_func(self):
+    #     return self.request.user.is_contractor()
 
-    def handle_no_permission(self):
-        return redirect_to_login(
-            self.request.get_full_path(),
-            reverse('login', kwargs={'user_type': 'contractor'}),
-            'next'
-        )
+    # def handle_no_permission(self):
+    #     return redirect_to_login(
+    #         self.request.get_full_path(),
+    #         reverse('login', kwargs={'user_type': 'contractor'}),
+    #         'next'
+    #     )
+
+#
+# class ContractorProjectListView(UserPassesTestMixin, ListView):
+#     model = Project
+#     context_object_name = 'projects'
+#     template_name = 'dashboard/contractor/project-list.html'
+#
+#     def get_queryset(self):
+#         return Project.objects.filter(creator=self.request.user)
+#
+#     def test_func(self):
+#         return self.request.user.is_contractor()
+#
+#     def handle_no_permission(self):
+#         return redirect_to_login(
+#             self.request.get_full_path(),
+#             reverse('login', kwargs={'user_type': 'contractor'}),
+#             'next'
+#         )
+#

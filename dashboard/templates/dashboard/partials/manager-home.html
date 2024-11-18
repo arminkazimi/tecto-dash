@@ -11,7 +11,7 @@
                  class=""
                  alt="logo"
                  width="32" height="32">
-            <h4 class="x-black ms-1">Tectotrack</h4>
+            <h4 class="x-black ms-2">Tectotrack</h4>
         </div>
         <div class="me-4">
             {#    <form action="{% url 'logout' %}" method="post">#}
@@ -45,22 +45,22 @@
             </div>
             <div class="row justify-content-center mt-2 gx-1">
                 <div class="col-7">
-                    <table class="table table-borderless gx-1" id="this-table">
+                    <table class="table table-borderless" id="this-table">
                         <thead>
                         <tr class="">
                             <th scope="col" class="fixed-width x-warning">Active</th>
-                            <th scope="col" class="col-3 x-warning">Name</th>
-                            <th scope="col" class="col-1 x-warning">Area</th>
-                            <th scope="col" class="x-warning">Workers</th>
-                            <th scope="col" class=" x-warning">Noise Level</th>
+                            <th scope="col" class="col-2 x-warning">Name</th>
+                            <th scope="col" class=" x-warning">Area</th>
+                            <th scope="col" class=" x-warning">Workers</th>
+                            <th scope="col" class="x-warning">Noise Level</th>
                             <th scope="col" class=" x-warning">Start</th>
-                            <th scope="col" class=" x-warning">End</th>
+                            <th scope="col" class="x-warning">End</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="table-custom-row">
-                            <a href="{{ project.get_absolute_url }}" class="text-decoration-none">
+                        {% for project in projects %}
+                            <tr class="table-custom-row ">
                                 <td>
                                     <div class="position-relative table-first-cell-square x-bg-surface-400 rounded-3">
                                     <span
@@ -74,15 +74,44 @@
                                     </span>
                                     </div>
                                 </td>
-                                <td class="ps-3 pt-12px">Phase 1</td>
-                                <td class="pt-12px">245m2</td>
-                                <td class="pt-12px">15</td>
-                                <td class="pt-12px">115dB</td>
-                                <td class="pt-12px">12/05/2024</td>
-                                <td class="pe-3 pt-12px">12/05/2024</td>
-                            </a>
-                        </tr>
-
+                                <td class="ps-3 pt-12px">
+                                    <a href="{{ project.get_absolute_url }}"
+                                       class="text-decoration-none x-black">
+                                        {{ project.name }}
+                                    </a>
+                                </td>
+                                <td class="pt-12px">
+                                    <a href="{{ project.get_absolute_url }}"
+                                       class="text-decoration-none x-black">
+                                        NONE
+                                    </a>
+                                </td>
+                                <td class="pt-12px">
+                                    <a href="{{ project.get_absolute_url }}"
+                                       class="text-decoration-none x-black">
+                                        {{ project.get_total_workers}}
+                                    </a>
+                                </td>
+                                <td class="pt-12px">
+                                    <a href="{{ project.get_absolute_url }}"
+                                       class="text-decoration-none x-black">
+                                        NONE
+                                    </a>
+                                </td>
+                                <td class="pt-12px">
+                                    <a href="{{ project.get_absolute_url }}"
+                                       class="text-decoration-none x-black">
+                                        {{ project.start_date }}
+                                    </a>
+                                </td>
+                                <td class="pe-3 pt-12px">
+                                    <a href="{{ project.get_absolute_url }}"
+                                       class="text-decoration-none x-black">
+                                        {{ project.end_date }}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
 
                     </table>

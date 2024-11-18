@@ -1,0 +1,5 @@
+{% if user.is_contractor %}
+    {% include 'dashboard/partials/contractor-project-detail.html' %}
+{% elif user.is_manager %}
+    {% include 'dashboard/partials/manager-project-detail.html' %}
+{% endif %}

@@ -1,0 +1,228 @@
+{#    <style>#}
+{#        /* Custom styles */#}
+{#        body {#}
+{#            background-color: #333;#}
+{#            color: white;#}
+{#            font-family: Arial, sans-serif;#}
+{#        }#}
+{##}
+{#        /* Header style */#}
+{#        .header {#}
+{#            background-color: #f7b500;#}
+{#            height: 50px;#}
+{#            width: 100%;#}
+{#            position: fixed;#}
+{#            top: 0;#}
+{#            left: 0;#}
+{#            z-index: 999;#}
+{#            display: flex;#}
+{#            align-items: center;#}
+{#            padding-left: 20px;#}
+{#        }#}
+{##}
+{#        .header a {#}
+{#            color: #f7b500;#}
+{#            text-decoration: none;#}
+{#            font-size: 18px;#}
+{#            font-weight: bold;#}
+{#            color: #333;#}
+{#        }#}
+{##}
+{#        /* Container margin adjustment for the fixed header */#}
+{#        .container {#}
+{#            margin-top: 80px; /* Adjust for the header */#}
+{#        }#}
+{##}
+{#        /* Info box style */#}
+{#        .info-box {#}
+{#            background-color: #e0e0e0; /* Light grey for the box */#}
+{#            border-radius: 10px;#}
+{#            margin-bottom: 15px;#}
+{#            padding: 15px;#}
+{#            font-size: 18px;#}
+{#            display: flex;#}
+{#            justify-content: space-between;#}
+{#            align-items: center;#}
+{#            color: #333; /* Dark text */#}
+{#        }#}
+{##}
+{#        .info-box span {#}
+{#            color: #333; /* Dark text */#}
+{#        }#}
+{##}
+{#        /* Style for the edit icon */#}
+{#        .info-box i {#}
+{#            color: #333; /* Dark icon */#}
+{#            font-size: 18px;#}
+{#            cursor: pointer;#}
+{#        }#}
+{##}
+{#        /* Title and notification colors */#}
+{#        .title-yellow {#}
+{#            color: #f7b500; /* Yellow color for titles */#}
+{#        }#}
+{##}
+{#        /* Notification section style */#}
+{#        .notification-box {#}
+{#            background-color: #f7b500;#}
+{#            color: black;#}
+{#            padding: 10px;#}
+{#            border-radius: 5px;#}
+{#            margin-bottom: 10px;#}
+{#            font-size: 16px;#}
+{#        }#}
+{##}
+{#        h4 {#}
+{#            margin-top: 30px;#}
+{#        }#}
+{#    </style>#}
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Project details{% endblock %}
+
+
+{% block body %}
+    <div class="contractor-header"></div>
+    <div class="container-fluid justify-content-center ">
+        <div class="row justify-content-center ms-0 mt-3">
+            <a href="{% url 'project-list' %}" class="text-decoration-none">
+                <div class="col-12 d-flex justify-content-strat">
+                    <h5 class="x-warning">Back</h5>
+                </div>
+            </a>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-9 d-flex justify-content-center">
+                <h3 class="x-warning">{{ project.name }} Information</h3>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-2">
+            <div class="col-9">
+                <div class="project-item rounded-2 d-flex justify-content-between align-items-center">
+                    <div class="ms-3">
+                        <h4 class="x-black">Status: {{ project.get_status_display }}</h4>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-9">
+                <div class="project-item rounded-2 d-flex justify-content-between align-items-center">
+                    <div class="ms-3">
+                        <h4 class="x-black">Zone</h4>
+                    </div>
+                    <div class="me-3">
+                        <img src="{% static 'icons/edit.svg' %}" alt="edit icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-9">
+                <div class="project-item rounded-2 d-flex justify-content-between align-items-center">
+                    <div class="ms-3">
+                        <h4 class="x-black">Path</h4>
+                    </div>
+                    <div class="me-3">
+                        <img src="{% static 'icons/edit.svg' %}" alt="edit icon">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-9">
+                <div class="project-item rounded-2 d-flex justify-content-between align-items-center">
+                    <div class="ms-3">
+                        <h4 class="x-black">Duration: {{ project.duration }}</h4>
+                    </div>
+                    <div class="me-3">
+                        <img src="{% static 'icons/edit.svg' %}" alt="edit icon">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-9">
+                <div class="project-item rounded-2 d-flex justify-content-between align-items-center">
+                    <div class="ms-3">
+                        <h4 class="x-black">Number Of Workers: {{ project.get_total_workers }}</h4>
+                    </div>
+                    <div class="me-3">
+                        <img src="{% static 'icons/edit.svg' %}" alt="edit icon">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-9">
+                <div class="project-item rounded-2 d-flex justify-content-between align-items-center">
+                    <div class="ms-3">
+                        <h4 class="x-black">Working Hours: {{ project.man_hour }}</h4>
+                    </div>
+                    <div class="me-3 ">
+                        <img src="{% static 'icons/edit.svg' %}" alt="edit icon">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-9">
+                <div class="project-item-104 rounded-2 d-flex justify-content-between align-items-center">
+                    <div class="ms-3">
+                        <h4 class="x-black">Machinery Equipments</h4>
+                        <h6 class="x-black">test, test</h6>
+                    </div>
+                    <div class="align-self-start mt-3 me-3">
+                        <img src="{% static 'icons/edit.svg' %}" alt="edit icon">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-9">
+                <div class="project-item-100 rounded-2 d-flex justify-content-between align-items-center">
+                    <div class="ms-3">
+                        <h4 class="x-black">Big Tools</h4>
+                        <h6 class="x-black">test</h6>
+                    </div>
+                    <div class="align-self-start mt-3 me-3">
+                        <img src="{% static 'icons/edit.svg' %}" alt="edit icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-9 d-flex justify-content-center">
+                <h4 class="x-warning">Notification</h4>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-2 mb-5">
+            <div class="col-9">
+                <div class="notification-list rounded-2 d-flex justify-content-between align-items-center">
+                    <div class="ms-3">
+                        <h5 class="x-black">Notif title</h5>
+                    </div>
+                    <div class="align-self-start mt-3 me-3">
+                        <p class="x-black">Notif date</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+{% endblock body %}
