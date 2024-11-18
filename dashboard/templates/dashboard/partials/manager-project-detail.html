@@ -1,0 +1,72 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Project details{% endblock %}
+
+
+{% block body %}
+    <div class=" first-disruptions-header x-bg-warning"></div>
+    <div class="d-flex justify-content-between align-items-center second-disruptions-header x-bg-surface-300">
+        <div class="d-flex justify-content-start ms-4">
+            <img src=" {% static 'icons/logo.svg' %}"
+                 class=""
+                 alt="logo"
+                 width="32" height="32">
+            <h4 class="x-black ms-2">Disruptions</h4>
+            <h4 class="x-white ms-2">{{ project.name }}</h4>
+        </div>
+        <div class="me-4">
+            <a href="{% url 'project-list' %}"
+               class="text-decoration-none x-black">
+                Home
+            </a>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row mt-2 gx-2">
+            <div class="col-3 ">
+                <div class="x-bg-black">
+                    Activity Zone & Logistics
+                </div>
+                <div class="x-bg-black">
+                    Duration: {{ project.start_date }} - {{ project.end_date }}
+                </div>
+                <div class="x-bg-black">
+                    Duration: {{ project.start_time }} - {{ project.end_time }}
+                </div>
+                <div class="x-bg-black">
+                    Number Of Workers: {{ project.get_total_workers }}
+                </div>
+                <div class="x-bg-black">
+                    hi
+                </div>
+                <div class="x-bg-black">
+                    hi
+                </div>
+                <div class="x-bg-black">
+                    hi
+                </div>
+                <div class="x-bg-black">
+                    hi
+                </div>
+                <div class="x-bg-black">
+                    hi
+                </div>
+            </div>
+            <div class="col-6 ">
+                <div class="x-bg-black">
+                    hi
+                </div>
+                <div class="x-bg-black">
+                    hi
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="x-bg-black">
+                    messages
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
